@@ -1,0 +1,27 @@
+<p class="title">订单项目</p>
+
+<div class="columns">
+  <div class="column">
+    <mat-card>
+      <form [formGroup]="form" >
+        <div class="field">
+          <mat-checkbox formControlName="BVI_incorporationFee" disabled>A.注册费 $ 3000 (必选) </mat-checkbox>
+          <p class="comment">（注：包含标准办公地址，邮件代收自取，政策解读，申报申请，指导项目完成政府问卷审核）</p>
+        </div>
+
+        <div class="field">
+          <mat-checkbox formControlName="BVI_shareholderDirectorDocFee" disabled>B.股东/董事证件公证：$500/人</mat-checkbox>
+        </div>
+
+        <p class="comment">提示：总订单价格：$3000 + $500 * 需公证的人数</p>
+
+        <div>
+          总价：
+          <span class="cost">$ {{subtotal}}</span>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>
+
+<button mat-raised-button class="button" (click)="doCheckout()">下一步</button>

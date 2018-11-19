@@ -1,0 +1,58 @@
+<p class="title">合法合规架构搭建订单项目</p>
+
+<div class="columns">
+  <div class="column">
+    <mat-card>
+      <form [formGroup]="form" >
+        <div class="field">
+          <mat-checkbox formControlName="legal_opinion" [disabled]="getIsPaid()">A.法律意见书 $ 50,000</mat-checkbox>
+          <p class="en_intro">Legal opinion</p>
+        </div>
+
+        <div class="field">
+          <mat-checkbox formControlName="legal_opinion_emergency" [disabled]="getIsPaid()">B.法律意见书加急费 $ 15,000</mat-checkbox>
+          <p class="en_intro">Legal opinion emergency fee</p>
+        </div>
+
+        <div class="field">
+          <mat-checkbox formControlName="legal_opinion_purchase_agreement" [disabled]="getIsPaid()">C.购买协议 $ 20,000</mat-checkbox>
+          <p class="en_intro">Purchase agreement</p>
+        </div>
+
+        <div class="field">
+          <mat-checkbox formControlName="legal_opinion_sg_terms" [disabled]="getIsPaid()">D.公募条款 $ 20,000</mat-checkbox>
+          <p class="en_intro">Singapore law governed terms and conditions for public sale</p>
+        </div>
+
+        <div class="field">
+          <mat-checkbox formControlName="legal_opinion_operating_agreement" [disabled]="getIsPaid()">E.运营协议 $ 20,000</mat-checkbox>
+          <p class="en_intro">Operating agreement</p>
+        </div>
+
+        <div class="field">
+          <mat-checkbox formControlName="legal_opinion_constitution" [disabled]="getIsPaid()">F.发行者章程 $ 10,000</mat-checkbox>
+          <p class="en_intro">Constitution of the issuer</p>
+        </div>
+
+        <div class="field">
+          <mat-checkbox formControlName="legal_opinion_IP_transfer" [disabled]="getIsPaid()">G.知识产权转让协议（如有需要） $ 20,000</mat-checkbox>
+          <p class="en_intro">Intellectual property transfer agreement (if required)</p>
+        </div>
+
+        <div class="field">
+          <mat-checkbox formControlName="legal_opinion_lawyer_consult" [disabled]="getIsPaid()">H.律师咨询（年度） $ 25,000</mat-checkbox>
+          <p class="en_intro">Lawyer consulting (annual)</p>
+        </div>
+
+
+        <div>
+          总价：
+          <span class="cost">$ {{subtotal}}</span>
+        </div>
+
+      </form>
+    </mat-card>
+  </div>
+</div>
+
+<button mat-raised-button class="button" (click)="doCheckout()">下一步</button>

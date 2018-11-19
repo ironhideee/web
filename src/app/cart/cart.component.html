@@ -1,0 +1,77 @@
+<p class="title">订单项目</p>
+
+<div class="columns">
+  <div class="column">
+    <mat-card>
+    <form [formGroup]="form" >
+      <div class="field">
+        <mat-checkbox formControlName="CLG_incorporationFee" disabled>新加坡基金会注册费 $ 3000 (必选) </mat-checkbox>
+        <p class="comment">（注：包含标准办公地址，邮件代收自取，政策解读，申报申请，指导项目完成政府问卷审核）</p>
+      </div>
+
+      <!-- <div class="field">
+        <mat-checkbox [disabled]="true" formControlName="officeAddressFee">标准办公地址 免费!</mat-checkbox>
+      </div>
+
+      <div class="field">
+        <mat-checkbox [disabled]="true" formControlName="mailServiceFee">邮件代收自取 免费!</mat-checkbox>
+      </div> -->
+
+      <div class="field">
+        <mat-checkbox formControlName="CLG_localSecretaryFee" disabled>本地秘书挂名费（一年期） $ 1200 每年 （必选）</mat-checkbox>
+      </div>
+
+      <div class="field">
+        <mat-checkbox formControlName="CLG_localDirectorFee" disabled>本地董事挂名费（一年期）$ 5000 每年 </mat-checkbox>
+        <p class="comment">（注：新加坡政府要求本地注册实体必须有一名董事为新加坡公民或PR）</p>
+        <!--<p style="color:purple">-->
+          <!--（提示：若您在上一个步骤中选择了本地董事挂名服务，则必须勾选此项）-->
+        <!--</p>-->
+      </div>
+
+      <div class="field">
+        <mat-checkbox formControlName="CLG_certificateFee" [disabled]="getIsPaid()">注册证明书 $300</mat-checkbox>
+      </div>
+
+      <!--<div class="field">-->
+        <!--<mat-checkbox formControlName="CLG_bankAccountStartFee" [disabled]="getIsPaid()">银行开户服务费（首付） $1000</mat-checkbox>-->
+        <!--<p class="comment">-->
+          <!--（注：开户服务费共计3000，开户成功再缴纳2000尾款。开户失败1000服务费不退还）-->
+        <!--</p>-->
+      <!--</div>-->
+
+      <!-- <div class="field">
+        <mat-checkbox formControlName="CLG_bankAccountTailFee">银行开户服务费（尾款） $2,000</mat-checkbox>
+        <p>
+          注：开户服务费共计3000，开户成功再缴纳2000尾款。开户失败1000服务费不退还。
+        </p>
+      </div> -->
+
+      <!-- <div class="field">
+        <mat-checkbox formControlName="CLG_packageFTAFee" [disabled]="getIsPaid()">财务、税务、审计年报打包套餐（一年）$20,000</mat-checkbox>
+      </div>
+
+      <div class="field">
+        <mat-checkbox formControlName="CLG_shellFoundationFee" [disabled]="getIsPaid()">购买空壳基金会（购买前请跟客户经理确认库存）$18,400</mat-checkbox>
+      </div> -->
+
+      <div>
+        总价：
+        <span class="cost">$ {{subtotal}}</span>
+      </div>
+      <div>
+          第二年起：
+        <span class="cost">$ {{recurrencePaymentSubtotal}}/年</span>
+      </div>
+    </form>
+      <p class="comment">注意事项： </p>
+      <p class="comment">1、每年维护费用：秘书服务费$1,200+本地董事代理$5,000（若产生）+财税审计费</p>
+      <p class="comment">2、注册时长：提交所有材料后10-21天注册完成</p>
+      <p class="comment">3、新加坡政府要求基金会在成立三个月内要指派审计师，实际做审计报表是财务年度结束日结束的时候做。年审包括：财务、税务、审计。审计公司一般是先收押金，年底再具体报价。年审目前有两个方案：</p>
+      <p class="comment">方案一: 客户自行联系审计公司后与我们进行对接，上报政府备案，大概报价范围：1) 审计工作报价：10,000-16,000 USD/年；2) 财务工作报价：4,000-6,000 USD/年；3) 税务工作报价：2,000-3,000 USD/ 年；</p>
+      <p class="comment">方案二: 20,000 USD套餐，总共包括：财务、税务、审计。客户不需要单独去联系，由我们全权负责。指派审计师时先付押金2,000 USD，尾款18,000 USD于出具年度审计报告时支付</p>
+    </mat-card>
+  </div>
+</div>
+
+<button mat-raised-button class="button" (click)="doCheckout()">下一步</button>

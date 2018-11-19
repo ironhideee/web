@@ -1,0 +1,159 @@
+/* DashboardComponent's private CSS styles */
+[class*='col-'] {
+  float: left;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+[class*='col-']:last-of-type {
+  padding-right: 0;
+}
+a {
+  text-decoration: none;
+}
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+h3 {
+  text-align: center; margin-bottom: 0;
+}
+h4 {
+  position: relative;
+}
+.grid {
+  margin: 0;
+}
+.col-1-4 {
+  width: 25%;
+}
+.module {
+  padding: 20px;
+  text-align: center;
+  color: #eee;
+  max-height: 120px;
+  min-width: 120px;
+  background-color: #607D8B;
+  border-radius: 2px;
+}
+.module:hover {
+  background-color: #EEE;
+  cursor: pointer;
+  color: #607d8b;
+}
+.grid-pad {
+  padding: 10px 0;
+}
+.grid-pad > [class*='col-']:last-of-type {
+  padding-right: 20px;
+}
+@media (max-width: 600px) {
+  .module {
+    font-size: 10px;
+    max-height: 75px; }
+}
+@media (max-width: 1024px) {
+  .grid {
+    margin: 0;
+  }
+  .module {
+    min-width: 60px;
+  }
+}
+
+.mat-list-item {
+  color: #3f51b5;
+}
+
+.coding {
+  color: #a1a1a1;
+}
+
+.title {
+  text-align: right;
+  font-size: 40px;
+  margin-bottom: 10px;
+  font-weight: bolder;
+}
+
+.mat-card {
+  padding: 0 24px 24px 24px;
+  height: 230px;
+}
+
+.mat-card-content {
+  height: 103px;
+}
+
+.mat-card-header {
+  background-color: #3f51b5;
+  margin-left: -24px;
+  margin-right: -24px;
+  margin-bottom: 10px;
+  height: 50px;
+}
+
+.mat-card-actions {
+  text-align: center;
+  box-shadow: inset 0 1px 0 0 rgba(0,0,0,.12);
+}
+
+.mat-card-title {
+  text-transform: capitalize;
+  text-align: left;
+  font-weight: 500;
+  font-size: 17px;
+  color: #FFFFFF;
+  line-height: 50px;
+  margin-left: 15px;
+}
+
+.content {
+  text-align: left;
+  font-family: "Microsoft YaHei";
+  font-size: 14px;
+  min-height: 65px;
+}
+
+.mat-step-header {
+  padding: 0 1px;
+}
+
+.settingit {
+  color: rgb(116 199 228);
+  font-weight: bold;
+}
+
+.logo {
+  float: left;
+  width: 20%;
+}
+
+.logo img {
+  margin-top: 50%;
+}
+
+.box{
+  display: flex;
+  justify-content: space-between;
+}
+
+.button{
+  background-color: rgb(116 199 228);
+  color: #FFFFFF;
+}
+
+.columns{
+  margin-left: 25%;
+}
+
+.business {
+  border-bottom: 2px solid rgb(116 199 228);
+  margin-bottom: 20px;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: bold;
+}
+

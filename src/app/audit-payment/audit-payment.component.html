@@ -1,0 +1,30 @@
+<h1>
+  请确认订单信息并完成付款
+</h1>
+
+<h2>
+  您需要支付2000美金作为押金，审计工作将在年底进行，余款18000美金在年底支付即可。
+</h2>
+
+<p>项目详情：基金会年度审计定金</p>
+<p>押金：$2000</p>
+
+<!--<a mat-raised-button color="primary" (click)="!isPaid() && onPaymentAction()" id="toPayButton" [disabled]="isPaid()">付款</a>-->
+
+<form name="fomopay" onsubmit="document.fomopay.submit();" action="https://gateway.fomopay.com/pgw/v1" method="post">
+  <input type="hidden" name="merchant" [value]="values.merchant">
+  <input type="hidden" name="price" [value]="values.price">
+  <input type="hidden" name="description" [value]="values.description">
+  <input type="hidden" name="transaction" [value]="values.transaction">
+  <input type="hidden" name="return_url" [value]="values.return_url">
+  <input type="hidden" name="callback_url" [value]="values.callback_url">
+  <input type="hidden" name="currency_code" [value]="values.currency_code">
+  <input type="hidden" name="type" [value]="values.type">
+  <input type="hidden" name="timeout" [value]="values.timeout">
+  <input type="hidden" name="nonce" [value]="values.nonce">
+  <input type="hidden" name="signature" [value]="values.signature">
+  <button class="pay_button" type="submit">付款</button>
+</form>
+
+<a mat-raised-button color="primary" (click)="isPaid() && toNextStep()" id="paidButton" [disabled]="!isPaid()" >已付款</a>
+

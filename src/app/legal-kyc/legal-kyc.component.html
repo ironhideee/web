@@ -1,0 +1,186 @@
+<p class="title">KYC资料提交</p>
+
+<mat-card>
+  <div *ngIf="!KYC_choice">
+    <div class="line-spacing" *ngIf="!type_bvi">
+      <div class="file-field">
+        <label class="upload-button">
+          <span><mat-icon>star</mat-icon><mat-icon *ngIf="bizfilechecked">done</mat-icon> 请从此处上传Bizfile：</span>
+          <input type="file" ngFileSelect (uploadOutput)="onBizfileUploadOutput($event)" [uploadInput]="uploadInput"
+                 multiple>
+        </label>
+        <div class="loading-spinner" *ngIf="bizfileuploading">
+          文件正在上传中...
+        </div>
+      </div>
+    </div>
+    <div class="line-spacing" *ngIf="!type_bvi">
+      <div class="file-field">
+        <label class="upload-button">
+          <span><mat-icon>star</mat-icon><mat-icon *ngIf="constitutionchecked">done</mat-icon> 请从此处上传Constitution：</span>
+          <input type="file" ngFileSelect (uploadOutput)="onConstitutionUploadOutput($event)" [uploadInput]="uploadInput"
+                 multiple>
+        </label>
+        <div class="loading-spinner" *ngIf="constitutionuploading">
+          文件正在上传中...
+        </div>
+      </div>
+    </div>
+    <div class="line-spacing">
+      <h2 *ngIf="type_clg"><mat-icon>star</mat-icon> 董事信息：</h2>
+      <h2 *ngIf="!type_clg"><mat-icon>star</mat-icon> 董事／股东信息：</h2>
+      <div *ngIf="type_clg">
+        <form [formGroup]="basicInfoForm" *ngIf="!loading && !errors">
+          <div class="directors">
+            <div formArrayName="directors" class="director" *ngFor="let director of directors; let i = index;">
+              <app-director-documents-form
+                (remove)="removeNaturalPerson($event)"
+                [director]="director"
+                [isPaid]="isPaid()">
+              </app-director-documents-form>
+            </div>
+          </div>
+          <a mat-raised-button class="button" [disabled]="isPaid()" (click)="!isPaid() && openAddDirectorDialog()">新增</a>
+        </form>
+      </div>
+      <div *ngIf="type_bvi">
+        <form [formGroup]="basicInfoForm" (submit)="onSubmit()" *ngIf="!loading && !errors">
+          <div class="directors">
+            <div formArrayName="directors" class="director" *ngFor="let director of directors; let i = index;">
+              <app-pte-bvi-members-forms
+                (remove)="removeNaturalPerson($event)"
+                [director]="director"
+                [isPaid]="isPaid()">
+              </app-pte-bvi-members-forms>
+            </div>
+          </div>
+          <a mat-raised-button color="primary" [disabled]="isPaid()" (click)="!isPaid() && openAddDirectorDialog()">新增</a>
+        </form>
+      </div>
+      <div *ngIf="type_sg">
+        <form [formGroup]="basicInfoForm" (submit)="onSubmit()" *ngIf="!loading && !errors">
+          <div class="directors">
+            <div formArrayName="directors" class="director" *ngFor="let director of directors; let i = index;">
+              <app-pte-members-forms
+                (remove)="removeNaturalPerson($event)"
+                [director]="director"
+                [isPaid]="isPaid()">
+              </app-pte-members-forms>
+            </div>
+          </div>
+          <a mat-raised-button class="button" [disabled]="isPaid()" (click)="!isPaid() && openAddDirectorDialog()">新增</a>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="KYC_choice">
+    <div class="line-spacing" *ngIf="!type_bvi">
+      <mat-icon>star</mat-icon> Bizfile:
+      <a [href]="bizfile_url" target="_blank"><button mat-button class="button">查看</button></a>
+    </div>
+    <div class="line-spacing" *ngIf="!type_bvi">
+      <mat-icon>star</mat-icon> Constitution:
+      <a [href]="constitution_url" target="_blank"><button mat-button class="button">查看</button></a>
+    </div>
+    <div class="line-spacing">
+      <h2 *ngIf="type_clg"><mat-icon>star</mat-icon> 董事信息：</h2>
+      <h2 *ngIf="!type_clg"><mat-icon>star</mat-icon> 董事／股东信息：</h2>
+      <table class="simple directors-table">
+        <thead>
+        <tr>
+          <th>董事／股东</th>
+          <th>护照</th>
+          <th>地址证明</th>
+          <th>地址证明</th>
+        </tr>
+        </thead>
+
+        <tbody *ngIf="order">
+        <tr *ngFor="let s of order.naturalPeople">
+          <td>
+            <div>{{s.name}}</div>
+          </td>
+          <td>
+            <div><img class="image" [src]="s.passportUrl" alt=""></div>
+          </td>
+          <td>
+            <div><img class="image" [src]="s.addressProofFrontUrl" alt=""></div>
+          </td>
+          <td>
+            <div><img class="image" [src]="s.addressProofBackUrl" alt=""></div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="line-spacing">
+    <h2><mat-icon>star</mat-icon> 客户声明表格：</h2>
+    <p>（1）若公司主体是个人，请下载SD1 表格填写资料并签字后上传</p>
+    <p>（2）若主体是基金会，且董事为个人，请下载SD2 表格填写资料并签字后上传</p>
+    <p>（3）若主体是基金会，且董事还包括公司，请下载SD2，SD3 表格填写资料并签字后上传</p>
+    <table class="simple sd-table">
+      <thead>
+      <tr>
+        <th>表格下载</th>
+        <th>表格上传</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <td>SD1表格：<a href="assets/CDD Client Declaration Form SD1 (Individual).pdf" target="_blank">下载</a></td>
+        <td>
+          <div class="file-field">
+            <label class="upload-button">
+              <span><mat-icon *ngIf="sd1checked">done</mat-icon>请从此处上传SD1表格：</span>
+              <input type="file" ngFileSelect (uploadOutput)="onSD1UploadOutput($event)" [uploadInput]="uploadInput"
+                     multiple>
+            </label>
+            <div class="loading-spinner" *ngIf="sd1uploading">
+              文件正在上传中...
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>SD2表格：<a href="assets/CDD Client Declaration Form SD2 (Corp).pdf" target="_blank">下载</a></td>
+        <td>
+          <div class="file-field">
+            <label class="upload-button">
+              <span><mat-icon *ngIf="sd2checked">done</mat-icon>请从此处上传SD2表格：</span>
+              <input type="file" ngFileSelect (uploadOutput)="onSD2UploadOutput($event)" [uploadInput]="uploadInput"
+                     multiple>
+            </label>
+            <div class="loading-spinner" *ngIf="sd2uploading">
+              文件正在上传中...
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>SD3表格：<a href="assets/CDD Client Declaration Form SD3 (UBO).pdf" target="_blank">下载</a></td>
+        <td>
+          <div class="file-field">
+            <label class="upload-button">
+              <span><mat-icon *ngIf="sd3checked">done</mat-icon>请从此处上传SD3表格：</span>
+              <input type="file" ngFileSelect (uploadOutput)="onSD3UploadOutput($event)" [uploadInput]="uploadInput"
+                     multiple>
+            </label>
+            <div class="loading-spinner" *ngIf="sd3uploading">
+              文件正在上传中...
+            </div>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="comment">（注：在提交KYC资料之后，请耐心等待，审核通过之后会邮件通知您进行下一步操作）</p>
+</mat-card>
+
+<button mat-raised-button class="button" [disabled]="!nextstep" (click)="gotoNextStep()">下一步</button>

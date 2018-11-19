@@ -1,0 +1,137 @@
+<p class="title">基本注册信息</p>
+
+<p *ngIf="loading">载入信息中...</p>
+
+<p *ngIf="errors">{{errors}}</p>
+
+<form [formGroup]="basicInfoForm" (submit)="onSubmit()" *ngIf="!loading && !errors">
+  <mat-card>
+    <div class="example-container">
+      <div class="field">
+        <mat-form-field>
+          <input [readonly]="isPaid()" matInput placeholder="公司名称(必须使用英文大写,请提供两个公司备用名)" formControlName="name" required>
+          <span matSuffix>Ltd.</span>
+        </mat-form-field>
+        <!--<div class="warning" *ngIf="ifNameRepeat">-->
+          <!--您输入的基金会名称已被占用-->
+        <!--</div>-->
+      </div>
+
+      <div class="field">
+        <mat-form-field>
+          <input [readonly]="isPaid()" matInput placeholder="备用名1" formControlName="name_backup_1" required>
+          <span matSuffix>Ltd.</span>
+        </mat-form-field>
+        <!--<div class="warning" *ngIf="ifBackupName1Repeat">-->
+          <!--您输入的基金会名称已被占用-->
+        <!--</div>-->
+      </div>
+
+      <div class="field">
+        <mat-form-field>
+          <input [readonly]="isPaid()" matInput placeholder="备用名2" formControlName="name_backup_2" required>
+          <span matSuffix>Ltd.</span>
+        </mat-form-field>
+        <!--<div class="warning" *ngIf="ifBackupName2Repeat">-->
+          <!--您输入的基金会名称已被占用-->
+        <!--</div>-->
+      </div>
+
+      <div class="field">
+        <mat-form-field class="demo-chip-list">
+          <mat-chip-list #chipList>
+            <mat-chip  *ngFor="let activity of selectedBusinessActivities" (removed)="!isPaid() && removeBusinessActivity(activity)">
+              {{activity}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input [readonly]="isPaid()" [matChipInputAddOnBlur]="true" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addBusinessActivity($event)"
+                   placeholder="经营范围（注：推荐填写information technology/software development,请尽量详细描述，另合规需求勿涉及区块链）" formControlName="businessActivities" [matChipInputFor]="chipList" />
+          </mat-chip-list>
+        </mat-form-field>
+      </div>
+
+      <div class="field">
+        <mat-form-field>
+          <input [readonly]="isPaid()" matInput placeholder="业务开展地点（例如： In China）" formControlName="country_of_business" required>
+        </mat-form-field>
+      </div>
+
+      <div class="field">
+        <mat-form-field>
+          <input [readonly]="isPaid()" matInput placeholder="资金来源（推荐格式：XXX`s salary as [job title] at [company name] for [duration]）" formControlName="source_of_fund" required>
+        </mat-form-field>
+      </div>
+
+      <div class="field">
+        <mat-form-field>
+          <input [readonly]="isPaid()" matInput placeholder="资金来源公司的经营范围（例如：XXX`s salary as designer at SIU for 1 year）" formControlName="business_scope_of_source_of_fund" required>
+        </mat-form-field>
+      </div>
+
+      <div class="field">
+        <mat-form-field>
+          <input [readonly]="isPaid()" matInput placeholder="财务年度结束日(日/月)  (注：推荐填写当前月份月初日期)" formControlName="financialYearEnd" required>
+          <mat-error *ngIf="financialYearEnd.errors?.pattern">格式错误，应为(DD/MM)</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="field shares">
+        <p>股份设置情况（注：标准授权股份为50000）</p>
+        <mat-form-field>
+          <input [readonly]="isPaid()" matInput placeholder="1、共设置股份" formControlName="numberOfShares" required>
+          <span matSuffix>股</span>
+        </mat-form-field>
+        <mat-form-field>
+          <input [readonly]="isPaid()" matInput placeholder="2、每股价值" formControlName="valuePerShare" required>
+          <span matSuffix>USD</span>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card class="kitinfo">
+    <p class="comment">（注：公司注册成功之后，BVI Kit会邮寄到以下地址，请填写正确有效的信息）</p>
+    <div class="example-container">
+      <div class="field">
+        <mat-form-field>
+          <input [readonly]="isPaid()" matInput placeholder="BVI Kit邮寄地址" formControlName="bviKitReceiverAddress" required>
+        </mat-form-field>
+      </div>
+
+      <div class="field">
+        <mat-form-field>
+          <input [readonly]="isPaid()" matInput placeholder="收件人联系方式" formControlName="bviKitReceiverContact" required>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card>
+
+  <p class="title">
+    公司成员(股东/董事)信息
+  </p>
+  <p class="comment">
+    提示：
+  </p>
+  <p class="comment">
+    1、请至少设置一名股东/董事
+  </p>
+  <p class="comment">
+    2、若您想重新上传文件,点击按钮重新上传即可覆盖之前的文件
+  </p>
+  <div class="directors">
+    <div formArrayName="directors" class="director" *ngFor="let director of directors; let i = index;">
+      <app-pte-bvi-members-forms
+        (remove)="removeNaturalPerson($event)"
+        [director]="director"
+        [isPaid]="isPaid()">
+      </app-pte-bvi-members-forms>
+    </div>
+  </div>
+  <a mat-raised-button class="button" [disabled]="isPaid()" (click)="!isPaid() && openAddDirectorDialog()">新增</a>
+  <button mat-raised-button class="button" type="submit" [disabled]="basicInfoForm.invalid || !isDirectorSet()">下一步</button>
+</form>
+
+<div class="loading-spinner" *ngIf="generating">
+  正在加载中...
+</div>
+

@@ -1,0 +1,16 @@
+<p class="title">申请状态</p>
+<mat-card>
+  <p>
+    提交所有材料后大约3周注册完成。（不可加急）
+  </p>
+
+  <p>
+    审核通过后会邮件通知您，如需其他帮助，请联系客户经理！
+  </p>
+
+  <p>
+    您当前的申请状态：<mat-basic-chip color="accent" selected>{{status}}</mat-basic-chip>
+  </p>
+</mat-card>
+<a mat-raised-button class="button" [disabled]="!nextstep" (click)="nextstep && gotoNextStep()">下一步</a>
+

@@ -1,0 +1,27 @@
+<p class="title">年度续费订单项目</p>
+
+<div class="columns">
+  <div class="column">
+    <mat-card>
+      <form [formGroup]="form" >
+        <div class="field">
+          <mat-checkbox formControlName="CLG_localSecretaryFee" [disabled]="getIsPaid()">A.本地秘书 $ 1,200</mat-checkbox>
+          <p class="en_intro">Local Secretary</p>
+        </div>
+
+        <div class="field">
+          <mat-checkbox formControlName="CLG_localDirectorFee" [disabled]="getIsPaid()">B.本地董事 $ 5,000</mat-checkbox>
+          <p class="en_intro">Local Director</p>
+        </div>
+
+        <div>
+          总价：
+          <span class="cost">$ {{subtotal}}</span>
+        </div>
+
+      </form>
+    </mat-card>
+  </div>
+</div>
+
+<button mat-raised-button class="button" (click)="doCheckout()">下一步</button>

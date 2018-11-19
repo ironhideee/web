@@ -1,0 +1,37 @@
+<p class="title">白皮书法律合规律师修改</p>
+
+<mat-card>
+  <p>为了保证项目合规合法，不触及或违反任何现行新加坡监管条例。</p>
+  <p>请从下方上传中英文版本白皮书，律师审核后客户经理会联系您给出修改意见。</p>
+</mat-card>
+
+<mat-card>
+  <div class="file-field">
+    <label class="upload-button">
+      <span><mat-icon *ngIf="enwhitepaperchecked">done</mat-icon>请从此处上传英文白皮书文件：</span>
+      <input type="file" ngFileSelect (uploadOutput)="onEnWhitePaperUploadOutput($event)" [uploadInput]="uploadInput"
+             multiple>
+      <span class="comment">（注：请上传.doc/.docx格式的文件）</span>
+    </label>
+    <div class="loading-spinner" *ngIf="enwhitepaperuploading">
+      文件正在上传中...
+    </div>
+  </div>
+
+  <div class="file-field">
+    <label class="upload-button">
+      <span><mat-icon *ngIf="cnwhitepaperchecked">done</mat-icon>请从此处上传中文白皮书文件：</span>
+      <input type="file" ngFileSelect (uploadOutput)="onCnWhitePaperUploadOutput($event)" [uploadInput]="uploadInput"
+             multiple>
+      <span class="comment">（注：请上传.doc/.docx格式的文件）</span>
+    </label>
+    <div class="loading-spinner" *ngIf="cnwhitepaperuploading">
+      文件正在上传中...
+    </div>
+    <p class="comment">（注：若您需要较长时间准备白皮书，可点击下一步提交KYC资料，待白皮书准备好之后上传即可）</p>
+  </div>
+</mat-card>
+
+<a mat-raised-button class="button" (click)="gotoNextStep()">下一步</a>
+
+{{errors}}

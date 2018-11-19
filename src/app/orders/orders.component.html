@@ -1,0 +1,23 @@
+<h1>
+  历史订单
+</h1>
+
+<ul>
+  <li *ngFor="let s of orders">
+    <mat-card *ngIf="!(s.is_satori === false && (s.orderType === 'clg' || s.orderType === 'plc_singapore' || s.orderType === 'plc_bvi'))">
+      <ul class="order_detail">
+        <li><span class="title">订单类型：</span>{{s.orderType}}</li>
+        <li><span class="title">订单创建时间：</span>{{s.createTime | date}}</li>
+        <li><span class="title">您选择的服务包括：</span></li>
+        <ol>
+          <li *ngFor="let t of s.services">
+            {{t.descriptionCn}}： ${{t.costAmount}}
+          </li>
+        </ol>
+        <li><span class="title">总金额：</span><span class="cost"> ${{s.amountCost}}</span></li>
+        <li><span class="title">支付状态：</span><span class="cost">{{s.paymentStatus}}</span></li>
+      </ul>
+    </mat-card>
+  </li>
+</ul>
+

@@ -1,0 +1,88 @@
+<mat-horizontal-stepper linear>
+  <!-- <mat-step [stepControl]="firstFormGroup" completed="true">
+    <form>
+      <ng-template matStepLabel>提交董事资料</ng-template>
+      <div style="padding: 7px">
+  
+          <form [formGroup]="formDoc" (ngSubmit)="onSubmit()" novalidate>
+            
+            <div class="id-docs">
+              <div class="id-doc-upload" *ngFor="let director of directors">
+                <h1>{{director}}</h1>
+                
+                <mat-form-field>
+                  <app-input-file formControlName="basicfile1" placeholder="护照扫描件" ></app-input-file>
+                  <mat-icon matSuffix>folder</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <app-input-file formControlName="basicfile2" placeholder="身份证正面" ></app-input-file>
+                  <mat-icon matSuffix>folder</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <app-input-file formControlName="basicfile3" placeholder="身份证反面" ></app-input-file>
+                  <mat-icon matSuffix>folder</mat-icon>
+                </mat-form-field>
+
+              </div>
+            </div>
+            
+            <button type="submit" [disabled]="formDoc.invalid" mat-raised-button>Submit</button>
+            
+          </form>
+          
+        
+        </div>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+  </mat-step>
+
+  <mat-step [stepControl]="formDoc2" completed="true">
+    <form [formGroup]="formDoc2">
+      <ng-template matStepLabel>签署文件</ng-template>
+      
+      <div class="incorp-forms">
+        <h2 class="incorp-form">董事决议书</h2>
+        <button mat-button>下载表格</button>
+        <mat-form-field>
+            <app-input-file formControlName="basicfile5" placeholder="已填写表格" ></app-input-file>
+            <mat-icon matSuffix>folder</mat-icon>
+        </mat-form-field>
+
+
+        <button mat-raised-button matStepperNext color="primary">提交</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <form>
+      <ng-template matStepLabel>初审</ng-template>
+      我们已经收到您所有材料，正在审核，请稍候。
+    </form>
+  </mat-step>
+  <mat-step>
+    <form>
+      <ng-template matStepLabel>ACRA注册局审核</ng-template>
+      <p>
+        所有材料已提交ACRA注册局审核，该过程一般为两周至两月，请稍等。
+      </p>
+
+      <p>
+        提交日期：2018年1月20日
+      </p>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>完成</ng-template>
+    <p>
+        公司档案  <button mat-raised-button color="primary">下载</button>
+    </p>
+
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+    </div>
+  </mat-step> -->
+</mat-horizontal-stepper>

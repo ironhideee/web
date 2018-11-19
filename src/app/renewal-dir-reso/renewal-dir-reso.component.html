@@ -1,0 +1,23 @@
+<h1>董事决议签署</h1>
+
+<mat-card>
+  <p>
+    请从此处点击下载董事决议:
+    <a [href]="directors_resolution_url" target="_blank"><button mat-button color="primary">董事决议</button></a>
+  </p>
+
+  <div class="file-field">
+    <label class="upload-button">
+      <span><mat-icon *ngIf="resolutionchecked">done</mat-icon>请从此处上传签署后的董事决议：</span>
+      <input type="file" ngFileSelect (uploadOutput)="onResolutionUploadOutput($event)" [uploadInput]="uploadInput"
+             multiple>
+    </label>
+    <div class="loading-spinner" *ngIf="resolutionuploading">
+      文件正在上传中...
+    </div>
+  </div>
+
+  <p class="comment">（注：在提交签署过的董事决议之后请耐心等待回执新版bizfile，届时会邮件通知您！）</p>
+</mat-card>
+
+<button mat-raised-button color="primary" [disabled]="!nextstep" (click)="gotoNextStep()">下一步</button>

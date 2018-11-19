@@ -1,0 +1,79 @@
+<mat-card>
+  <form [formGroup]="directorForm" (submit)="onUpdate()">
+    <table>
+      <tbody>
+      <tr>
+        <td>
+          <div class="field">
+            <mat-form-field>
+              <mat-label>姓名</mat-label>
+              <input matInput placeholder="请用拼音填写此项" formControlName="name">
+            </mat-form-field>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <mat-form-field>
+              <input matInput placeholder="电子邮箱" formControlName="email">
+              <mat-error *ngIf="email.invalid">Email格式有误</mat-error>
+            </mat-form-field>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="field">
+            <mat-form-field>
+              <mat-label>联系电话</mat-label>
+              <input matInput placeholder="+86" formControlName="phone">
+            </mat-form-field>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <mat-form-field>
+              <input matInput placeholder="护照号" formControlName="passportId">
+            </mat-form-field>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="field">
+            <mat-form-field>
+              <mat-label>地址<span class="comment" *ngIf="addressInvalid">{{addressError}}</span></mat-label>
+              <input matInput placeholder="请用英文填写此项，必须与住址证明上的地址保持一致" formControlName="address">
+            </mat-form-field>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <mat-form-field>
+              <input matInput placeholder="担保金额(SGD)(推荐为1)" formControlName="guaranteeAmount">
+            </mat-form-field>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="field">
+            <mat-form-field>
+              <input matInput placeholder="出生日期(DD-MM-YYYY)" formControlName="birthday">
+            </mat-form-field>
+          </div>
+        </td>
+        <td>
+          <div class="field">
+            <mat-form-field>
+              <input matInput placeholder="国籍" formControlName="nationality">
+            </mat-form-field>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]='isMissingInfo()'>保存</button>
+
+  </form>
+</mat-card>

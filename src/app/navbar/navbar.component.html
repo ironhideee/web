@@ -1,0 +1,34 @@
+<nav class="navbar is-transparent">
+  <div class="navbar-brand">
+    <!--<a class="logo">-->
+      <!--<img src="/assets/SATORI.png" alt="Bulma: a modern CSS framework based on Flexbox" routerLink="/dashboard">-->
+    <!--</a>-->
+    <!--<div class="navbar-burger burger" data-target="navbarExampleTransparentExample">-->
+      <!--<span></span>-->
+      <!--<span></span>-->
+      <!--<span></span>-->
+    <!--</div>-->
+
+    <div class="navbar-end">
+      <div class="navbar-item" *ngIf="!email">
+        <button mat-button routerLink="/login">登入</button>
+      </div>
+
+      <div class="navbar-item" *ngIf="email">
+        <!--<span>{{email}}</span>-->
+        <button class="userinfo" mat-button [matMenuTriggerFor]="menu">
+          <span>{{email}}</span>
+          <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" [overlapTrigger]="false">
+          <!--<button mat-menu-item color="primary" routerLink="/settings">账户设置</button>-->
+          <button mat-menu-item color="primary" routerLink="/orders">历史订单</button>
+          <button mat-menu-item color="primary" routerLink="/dashboard">我的首页</button>
+          <button mat-menu-item color="primary" (click)="logOut()">退出</button>
+        </mat-menu>
+      </div>
+    </div>
+
+  </div>
+
+</nav>

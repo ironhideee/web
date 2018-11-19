@@ -1,0 +1,12 @@
+<p class="title">申请状态</p>
+<mat-card>
+  <p>
+    文件已提交，工作人员将在审核后通过邮件与您联系。
+  </p>
+
+  <p>
+    您当前的申请状态：<mat-basic-chip color="accent" selected>{{status}}</mat-basic-chip>
+  </p>
+</mat-card>
+<a mat-raised-button class="button" [disabled]="!nextstep" (click)="nextstep && gotoNextStep()">下一步</a>
+

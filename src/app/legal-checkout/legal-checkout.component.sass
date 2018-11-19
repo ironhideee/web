@@ -1,0 +1,325 @@
+.pay_button
+  width: 88px
+  height: 36px
+  margin-top: 20px
+  margin-bottom: 10px
+  background-color: #3f51b5
+  font-size: 14px
+  color: #FFFFFF
+  text-align: center
+
+.pay_button[disabled]
+  width: 88px
+  height: 36px
+  margin-top: 20px
+  margin-bottom: 10px
+  background-color: rgba(0,0,0,.12)
+  font-size: 14px
+  color: rgba(0,0,0,.26)
+  text-align: center
+
+.button
+  background-color: #74C7E4
+  color: #FFFFFF
+
+.legal_title
+  color: #74C7E4
+  font-weight: 500
+  font-size: 24px
+
+.simple
+  width: 100%
+
+.invoice
+  float: right
+  margin-top: 20px
+
+.invoice-table
+  font-size: 15px
+
+  thead
+    tr
+      th
+        padding: 16px 8px
+        font-weight: 500
+        color: rgba(0,0,0,.54)
+        border-bottom: 1px solid rgba(0,0,0,.12)
+        white-space: nowrap
+      th:first-child
+        padding-left: 24px
+
+  tbody
+    tr
+      td
+        padding: 16px 8px
+      td:first-child
+        padding-left: 24px
+
+  tbody
+    tr
+      border-bottom: 1px solid rgba(0,0,0,.12)
+    tr:last-child
+      border-bottom: none
+
+
+
+  .title
+    font-size: 17px
+
+  .text-right
+    text-align: right
+
+//.detail
+//  margin-top: 8px
+//  font-size: 12px
+//  color: rgba(0, 0, 0, 0.54)
+//  max-width: 360px
+
+
+.invoice-table-footer
+  margin: 32px 0 96px 0
+  tr
+    td
+      text-align: right
+      font-size: 17px
+      font-weight: 500
+      color: rgba(0, 0, 0, 0.54)
+      border-bottom: none
+      padding: 8px 8px
+      &:first-child
+        text-align: left
+
+
+    &.discount
+      td
+        padding-bottom: 32px
+
+    &.total
+      td
+        padding: 32px 8px
+        border-top: 1px solid rgba(0, 0, 0, 0.12)
+        font-size: 35px
+        font-weight: 400
+        color: rgba(0, 0, 0, 1)
+      td
+        &:last-child
+          color: red
+
+.invoice-table
+  font-size: 15px
+
+  .title
+    font-size: 17px
+
+
+  .detail
+    margin-top: 8px
+    font-size: 12px
+    color: rgba(0, 0, 0, 0.54)
+    max-width: 360px
+
+
+  .invoice-table-footer
+    margin: 32px 0 96px 0
+
+    tr
+      td
+        text-align: right
+        font-size: 17px
+        font-weight: 500
+        color: rgba(0, 0, 0, 0.54)
+        border-bottom: none
+        padding: 8px 8px
+
+        &:first-child
+          text-align: left
+
+
+      &.discount
+        td
+          padding-bottom: 32px
+
+      &.total
+
+        td
+          padding: 32px 8px
+          border-top: 1px solid rgba(0, 0, 0, 0.12)
+          font-size: 35px
+          font-weight: 300
+          color: rgba(0, 0, 0, 1)
+
+.left-side
+  float: left
+  width: 33%
+  margin: 92px 0 0 0
+
+  .content
+    text-align: center
+
+    .mat-form-field
+      width: 50%
+
+    .errors
+      margin-top: 10px
+      color: red
+
+.right-side
+  width: 35%
+  margin-left: 65%
+
+
+
+//隐藏的invoice
+
+#invoice
+
+  &.modern
+    padding : 0
+    display: none
+
+    .invoice-container
+
+      .card
+        width: 1020px
+        min-width: 1020px
+        max-width: 1020px
+        padding: 50px
+        overflow: hidden
+        background: #FFFFFF
+
+        .header
+          flex-direction: row
+          box-sizing: border-box
+          display: flex
+          max-height: 100%
+          place-content: flex-start space-between
+          align-items: flex-start
+
+          .ids
+            flex-direction: column
+            box-sizing: border-box
+            display: flex
+            line-height: 22px
+            color: rgba(0, 0, 0, 0.54)
+
+            .detail
+              width: 350px
+
+
+            .seller
+              flex-direction: row
+              box-sizing: border-box
+              display: flex
+              max-height: 100%
+              place-content: center flex-start
+              align-items: center
+              margin-bottom: 50px
+
+              .logo
+                width: 156px
+
+
+            .client
+              flex-direction: row
+              box-sizing: border-box
+              display: flex
+              max-height: 100%
+              place-content: center flex-start
+              align-items: center
+
+              .label
+                width: 156px
+                font-size: 24px
+                font-weight: 300
+
+
+            .divider
+              width: 1px
+              margin: 0 48px
+              background-color: rgba(0, 0, 0, 0.12)
+              height: 144px
+
+
+          .summary
+            font-size: 15px
+
+            .label
+              color: rgba(0, 0, 0, 0.54)
+              text-align: right
+              padding-right: 16px
+
+
+            .value
+              color: rgba(0, 0, 0, 1)
+
+
+            .code
+              font-size: 35px
+              font-weight: 300
+
+              td
+                padding-bottom: 32px
+
+
+        .content
+
+          .invoice-table
+            margin-top: 96px
+            font-size: 15px
+
+            title
+              font-size: 17px
+
+
+            .detail
+              margin-top: 8px
+              font-size: 12px
+              color: rgba(0, 0, 0, 0.54)
+              max-width: 360px
+
+
+          .invoice-table-footer
+            margin-bottom: 10px
+            tr
+
+              td
+                text-align: right
+                font-size: 17px
+                font-weight: 500
+                color: rgba(0, 0, 0, 0.54)
+                border-bottom: none
+                padding: 8px 8px
+
+                &:first-child
+                  text-align: left
+
+
+              &.discount
+
+                td
+                  padding-bottom: 32px
+
+
+              &.total
+
+                td
+                  padding: 32px 8px
+                  border-top: 1px solid rgba(0, 0, 0, 0.12)
+                  font-size: 35px
+                  font-weight: 300
+                  color: rgba(0, 0, 0, 1)
+
+
+        .footer
+          padding: 3rem 1.5rem 4rem
+          background-color: #FFFFFF
+          .note
+            font-size: 18px
+            font-weight: 500
+            margin-bottom: 24px
+
+          .small-note
+            font-size: 16px
+            font-weight: 500
+            color: rgba(0, 0, 0, 0.54)
+            line-height: 18px

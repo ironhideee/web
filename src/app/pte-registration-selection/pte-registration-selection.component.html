@@ -1,0 +1,20 @@
+<mat-card>
+  <p>
+    尊敬的用户，请选择私人有限公司注册地：
+  </p>
+
+  <div class="file-field">
+    <mat-form-field>
+      <mat-select placeholder="私人有限公司注册地" (selectionChange)="onNameOfEntityChanged($event)">
+        <mat-option *ngFor="let type of typeOfEntity" [value]="type.value">
+          {{type.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+  <button mat-button color="primary" routerLink="/dashboard">取消</button>
+  <button mat-raised-button class="button" (click)="onSubmit()">确认</button>
+
+</mat-card>

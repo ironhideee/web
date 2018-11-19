@@ -1,0 +1,152 @@
+<div class="logo">
+    <img src="/assets/logo_main.png">
+</div>
+<div class="columns">
+  <div class="column">
+    <p class="title">欢迎使用  <span class="settingit">SettingIT UNICORN</span></p>
+    <p class="title">自助注册系统</p>
+    <h1 class="business">合规单项</h1>
+    <ul>
+      <li class="box">
+        <div>
+          <p class="name">新加坡基金会注册</p>
+          <p *ngIf="fundation_name">正在进行：{{fundation_name}}；<span *ngIf="progress">订单状态：{{progress}}</span></p>
+        </div>
+        <div>
+          <button mat-button class="button" (click)="createClg()">{{current_status}}</button>
+        </div>
+      </li>
+      <hr>
+      <li class="box">
+        <div>
+          <p class="name">指派审计</p>
+          <p></p>
+        </div>
+        <div>
+          <button mat-button routerLink="/dashboard">开始</button>
+        </div>
+      </li>
+      <hr>
+      <li class="box">
+        <div>
+          <p class="name">私人有限公司注册</p>
+          <p *ngIf="pte_entity_name">正在进行：{{pte_entity_name}};<span *ngIf="pte_progress">订单状态：{{pte_progress}}</span></p>
+        </div>
+        <div>
+          <button mat-button class="button" (click)="startPLC()">{{pte_current_status}}</button>
+        </div>
+      </li>
+      <hr>
+      <li class="box">
+        <div>
+          <p class="name">ICO合规法律文件制定</p>
+          <p *ngIf="legal_entity_name">正在进行：{{legal_entity_name}};<span *ngIf="legal_progress">订单状态：{{legal_progress}}</span></p>
+        </div>
+        <div>
+          <button mat-button class="button" (click)="startLegal()">{{legal_current_status}}</button>
+        </div>
+      </li>
+      <hr>
+      <li class="box">
+        <div>
+          <p class="name">年度续费</p>
+          <p *ngIf="ar_entity_name">正在进行：{{ar_entity_name}};<span *ngIf="ar_progress">订单状态：{{ar_progress}}</span></p>
+        </div>
+        <div>
+          <button mat-button class="button" (click)="startAnnual()">{{ar_current_status}}</button>
+        </div>
+      </li>
+      <hr>
+    </ul>
+    <!--<div class="columns">-->
+      <!--<div class="column is-one-fifth">-->
+        <!--<mat-card>-->
+          <!--<mat-card-header>-->
+            <!--<mat-card-title>新加坡基金会注册</mat-card-title>-->
+          <!--</mat-card-header>-->
+          <!--<mat-card-content>-->
+            <!--<div class="content">-->
+              <!--<p *ngIf="fundation_name">正在进行：{{fundation_name}}</p>-->
+              <!--<p *ngIf="progress">订单状态：{{progress}}</p>-->
+            <!--</div>-->
+          <!--</mat-card-content>-->
+          <!--<mat-card-actions>-->
+
+            <!--<button mat-button color="primary" (click)="createClg()">{{current_status}}</button>-->
+
+          <!--</mat-card-actions>-->
+        <!--</mat-card>-->
+      <!--</div>-->
+      <!--<div class="column is-one-fifth">-->
+        <!--<mat-card class="coding">-->
+          <!--<mat-card-header>-->
+            <!--<mat-card-title>指派审计</mat-card-title>-->
+          <!--</mat-card-header>-->
+          <!--<mat-card-content>-->
+            <!--<div class="content"></div>-->
+          <!--</mat-card-content>-->
+          <!--<mat-card-actions>-->
+
+            <!--&lt;!&ndash;<button mat-button (click)="createAudit()">开始</button>&ndash;&gt;-->
+            <!--<button mat-button routerLink="/dashboard">开始</button>-->
+
+          <!--</mat-card-actions>-->
+        <!--</mat-card>-->
+      <!--</div>-->
+      <!--<div class="column is-one-fifth">-->
+        <!--<mat-card>-->
+          <!--<mat-card-header>-->
+            <!--<mat-card-title>私人有限公司注册</mat-card-title>-->
+          <!--</mat-card-header>-->
+          <!--<mat-card-content>-->
+            <!--<div class="content">-->
+              <!--<p *ngIf="pte_entity_name">正在进行：{{pte_entity_name}}</p>-->
+              <!--<p *ngIf="pte_progress">订单状态：{{pte_progress}}</p>-->
+            <!--</div>-->
+          <!--</mat-card-content>-->
+          <!--<mat-card-actions>-->
+
+            <!--<button mat-button color="primary" (click)="startPLC()">{{pte_current_status}}</button>-->
+
+          <!--</mat-card-actions>-->
+        <!--</mat-card>-->
+      <!--</div>-->
+      <!--<div class="column is-one-fifth">-->
+        <!--<mat-card>-->
+          <!--<mat-card-header>-->
+            <!--<mat-card-title>ICO合规法律文件制定</mat-card-title>-->
+          <!--</mat-card-header>-->
+          <!--<mat-card-content>-->
+            <!--<div class="content">-->
+              <!--<p *ngIf="legal_entity_name">正在进行：{{legal_entity_name}}</p>-->
+              <!--<p *ngIf="legal_progress">订单状态：{{legal_progress}}</p>-->
+            <!--</div>-->
+          <!--</mat-card-content>-->
+          <!--<mat-card-actions>-->
+
+            <!--<button mat-button color="primary" (click)="startLegal()">{{legal_current_status}}</button>-->
+
+          <!--</mat-card-actions>-->
+        <!--</mat-card>-->
+      <!--</div>-->
+      <!--<div class="column is-one-fifth">-->
+        <!--<mat-card>-->
+          <!--<mat-card-header>-->
+            <!--<mat-card-title>年度续费</mat-card-title>-->
+          <!--</mat-card-header>-->
+          <!--<mat-card-content>-->
+            <!--<div class="content">-->
+              <!--<p *ngIf="ar_entity_name">正在进行：{{ar_entity_name}}</p>-->
+              <!--<p *ngIf="ar_progress">订单状态：{{ar_progress}}</p>-->
+            <!--</div>-->
+          <!--</mat-card-content>-->
+          <!--<mat-card-actions>-->
+
+            <!--<button mat-button color="primary" (click)="startAnnual()">{{ar_current_status}}</button>-->
+
+          <!--</mat-card-actions>-->
+        <!--</mat-card>-->
+      <!--</div>-->
+    <!--</div>-->
+  </div>
+</div>

@@ -1,0 +1,24 @@
+/* AuditComponent's private CSS styles */
+[class*='col-'] {
+  float: left;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+[class*='col-']:last-of-type {
+  padding-right: 0;
+}
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+h1 {
+  height: 40px;
+  display: block;
+}
+.audit_click {
+  border: 2px solid #a1a1a1;
+  background: #dddddd;
+  width: 150px;
+  border-radius: 20px;
+}

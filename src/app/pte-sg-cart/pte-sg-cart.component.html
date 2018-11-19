@@ -1,0 +1,43 @@
+<p class="title">订单项目</p>
+
+<div class="columns">
+  <div class="column">
+    <mat-card>
+      <form [formGroup]="form" >
+        <div class="field">
+          <mat-checkbox formControlName="PLC_incorporationFee" disabled>A.注册费 $ 3000 (必选) </mat-checkbox>
+          <p class="comment">（注：包含标准办公地址，邮件代收自取，政策解读，申报申请，指导项目完成政府问卷审核）</p>
+        </div>
+
+        <div class="field">
+          <mat-checkbox formControlName="PLC_localSecretaryFee" disabled>B.本地秘书挂名服务 $ 1200／年 （必选）</mat-checkbox>
+        </div>
+
+        <div class="field">
+          <mat-checkbox formControlName="PLC_localDirectorFee" disabled>C.本地名义董事挂名服务 $ 5000／年 </mat-checkbox>
+        </div>
+
+        <div class="field">
+          <mat-checkbox formControlName="PLC_bankAccountStartFee" [disabled]="getIsPaid()">D.银行开户 $ 3000</mat-checkbox>
+          <p class="comment">（注：现在您只需缴付$1000基础服务费，开户成功后缴付尾款$2000）</p>
+        </div>
+
+        <div class="field">
+          <mat-checkbox formControlName="PLC_certificateFee" [disabled]="getIsPaid()">E.注册证明书 $ 300</mat-checkbox>
+        </div>
+
+        <p class="comment">提示： </p>
+        <p class="comment">1、在私人有限公司注册完成后，可预约开户服务，需董事本人到新加坡与银行面签;若开户不成功基础服务费不退还</p>
+        <p class="comment">2、每年维护费用：秘书服务费$1,200+本地董事代理$5,000（若产生）+财税方案$10,000,公司成立第二年开始缴纳</p>
+        <p class="comment">3、注册时长：提交所有材料后7天注册完成。（可加急48小时内注册完成，加收20%费用）</p>
+
+        <div>
+          总价：
+          <span class="cost">$ {{subtotal}}</span>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>
+
+<button mat-raised-button class="button" (click)="doCheckout()">下一步</button>

@@ -1,0 +1,26 @@
+<p class="title">注册完成</p>
+<mat-card>
+  <p>注册完成后，请接收官方电子文件bizfile，并可以从官网查验公司存在；</p>
+  <p>董事成员签署标准章程，或者订制特殊章程，召开第一次成员大会（在线）</p>
+</mat-card>
+
+<mat-card class="download">
+  <p>
+    点击下载 bizfile:
+    <a [href]="bizfile_url" target="_blank"><button mat-button color="primary">bizfile</button></a>
+  </p>
+
+  <p>
+    点击下载 constitution:
+    <a [href]="constitution_url" target="_blank"><button mat-button color="primary">constitution</button></a>
+  </p>
+
+  <p>
+    点击下载 Certificate of Incorporation:
+    <a [href]="certificate_url" target="_blank"><button mat-button color="primary">certificate</button></a>
+  </p>
+</mat-card>
+
+<p>若您还需要Setting It Unicorn其他服务请返回“我的首页”进行选择!</p>
+
+<a mat-raised-button class="button" routerLink="/dashboard">完成并返回主页</a>

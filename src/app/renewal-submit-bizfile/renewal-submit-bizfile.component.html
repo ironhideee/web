@@ -1,0 +1,30 @@
+<p class="title">提交Bizfile</p>
+
+<mat-card>
+  <div *ngIf="!if_satori">
+    <p>年度续费需要您提供Bizfile文件</p>
+    <p>请从下方上传，如有疑问，请联系客户经理！</p>
+    <div class="file-field">
+      <label class="upload-button">
+        <span><mat-icon *ngIf="bizfilechecked">done</mat-icon>请从此处上传Bizfile：</span>
+        <input type="file" ngFileSelect (uploadOutput)="onBizfileUploadOutput($event)" [uploadInput]="uploadInput"
+               multiple>
+      </label>
+      <div class="loading-spinner" *ngIf="bizfileuploading">
+        文件正在上传中...
+      </div>
+    </div>
+  </div>
+  <div *ngIf="if_satori">
+    <p *ngIf="order">系统已为您自动同步 {{order.incorporationName}} 的Bizfile</p>
+    <p>可从下方点击查看，如有疑问，请联系客户经理！</p>
+    <div class="line-spacing">
+      Bizfile:
+      <a [href]="bizfile_url" target="_blank"><button mat-button color="primary">查看</button></a>
+    </div>
+  </div>
+
+  <p class="comment">（注：在提交Bizfile之后请耐心等待回执董事决议文件，届时会邮件通知您！）</p>
+</mat-card>
+
+<button mat-raised-button class="button" [disabled]="!nextstep" (click)="gotoNextStep()">下一步</button>

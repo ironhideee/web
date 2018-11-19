@@ -1,0 +1,212 @@
+<div class="loading-spinner" *ngIf="loading">
+  载入中...
+</div>
+
+<div class="error-messages" *ngIf="!!errors">
+  {{errors | json}}
+</div>
+
+<div *ngIf="!!invoice">
+  <p class="sg_title">请确认订单信息并完成付款</p>
+  <mat-card>
+    <table class="simple invoice-table">
+      <thead>
+      <tr>
+        <th>SERVICE</th>
+        <th class="text-right">TOTAL</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let s of invoice.services">
+        <td>
+          <div class="title">{{s.descriptionCn}}</div>
+        </td>
+        <td class="text-right">
+          {{s.costAmount | currency:'USD':'symbol'}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="left-side">
+      <div class="content">
+        <mat-form-field>
+          <input matInput #discount name="discount" placeholder="请输入折扣码">
+        </mat-form-field>
+        <div class="apply">
+          <button class="submit button" [disabled]="isPaid()" (click)="onSubmitDiscount(discount.value)" mat-raised-button>提交</button>
+        </div>
+        <div class="errors">{{errors}}</div>
+      </div>
+    </div>
+
+    <table class="right-side invoice-table-footer">
+      <tbody *ngIf="order">
+      <tr class="subtotal">
+        <td>SUBTOTAL</td>
+        <td>{{order.amountCost | currency:'USD':'symbol'}}</td>
+      </tr>
+      <tr class="discount">
+        <td>DISCOUNT</td>
+        <td>{{order.percentage}} %</td>
+      </tr>
+      <tr class="total">
+        <td>TOTAL</td>
+        <td>{{price_paid | currency:'USD':'symbol'}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </mat-card>
+</div>
+
+<form name="fomopay" onsubmit="document.fomopay.submit();" action="https://gateway.fomopay.com/pgw/v1" method="post">
+  <input type="hidden" name="merchant" [value]="values.merchant">
+  <input type="hidden" name="price" [value]="values.price">
+  <input type="hidden" name="description" [value]="values.description">
+  <input type="hidden" name="transaction" [value]="values.transaction">
+  <input type="hidden" name="return_url" [value]="values.return_url">
+  <input type="hidden" name="callback_url" [value]="values.callback_url">
+  <input type="hidden" name="currency_code" [value]="values.currency_code">
+  <input type="hidden" name="type" [value]="values.type">
+
+  <input type="hidden" name="timeout" [value]="values.timeout">
+  <input type="hidden" name="nonce" [value]="values.nonce">
+  <input type="hidden" name="signature" [value]="values.signature">
+  <button class="pay_button button" type="submit" [disabled]="isPaid()">付款</button>
+  <!--<a mat-raised-button color="primary" type="submit">付款</a>-->
+
+  <a mat-raised-button class="button" (click)="isPaid() && toNextStep()" id="paidButton" [disabled]="!isPaid()">已付款</a>
+  <!--<a mat-raised-button color="primary" class="invoice" (click)="isPaid() && download()" [disabled]="!isPaid()"><mat-icon>cloud_download</mat-icon>下载Invoice</a>-->
+</form>
+
+<div class="loading-spinner" *ngIf="generating">
+  生成文件中...
+</div>
+
+<!--隐藏的invoice-->
+
+<!--<div id="invoice" class="modern page-layout ">-->
+
+  <!--<div class="invoice-container">-->
+
+    <!--<div class="card">-->
+      <!--<div class="header">-->
+        <!--<div class="ids">-->
+          <!--<div fxLayout="row" class="seller">-->
+
+            <!--<div class="logo">-->
+              <!--<img src="assets/title_logo.png">-->
+            <!--</div>-->
+            <!--<div class="divider"></div>-->
+            <!--<div class="detail">-->
+              <!--<div class="title">Satori BCC Pte Ltd.</div>-->
+              <!--<div class="phone">-->
+                <!--<span>+65 83190680</span>-->
+              <!--</div>-->
+              <!--<div class="email">-->
+                <!--<span>biz@satori.works</span>-->
+              <!--</div>-->
+              <!--<div class="website">-->
+                <!--<span>www.satori.works</span>-->
+              <!--</div>-->
+              <!--<div class="address">-->
+                <!--<span>The Work Project OUE Downtown, 6A Shenton Way  #04-01 to 09 068815,Singapore</span>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <!--<div class="client">-->
+            <!--<div class="label">-->
+              <!--<div>CLIENT</div>-->
+            <!--</div>-->
+            <!--<div class="divider"></div>-->
+            <!--<div class="detail" *ngIf="order">-->
+              <!--<div class="title">{{order.incorporationName}}</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+
+        <!--<table class="summary">-->
+          <!--<tr class="code">-->
+            <!--<td class="label">INVOICE</td>-->
+            <!--<td class="value" *ngIf="order">00000{{order.id}}</td>-->
+          <!--</tr>-->
+          <!--<tr>-->
+            <!--<td class="label">INVOICE DATE</td>-->
+            <!--<td class="value" *ngIf="order">{{order.paymentDate | date}}</td>-->
+          <!--</tr>-->
+          <!--<tr>-->
+            <!--<td class="label">DUE DATE</td>-->
+            <!--<td class="value">{{dueDate | date}}</td>-->
+          <!--</tr>-->
+          <!--<tr>-->
+            <!--<td class="label">TOTAL DUE</td>-->
+            <!--<td class="value">{{price_paid | currency:'USD':'symbol'}}</td>-->
+          <!--</tr>-->
+        <!--</table>-->
+      <!--</div>-->
+
+      <!--<div class="content" *ngIf="!!invoice">-->
+        <!--<table class="simple invoice-table">-->
+          <!--<thead>-->
+          <!--<tr>-->
+            <!--<th>SERVICE</th>-->
+            <!--<th class="text-right">TOTAL</th>-->
+          <!--</tr>-->
+          <!--</thead>-->
+
+          <!--<tbody>-->
+          <!--<tr *ngFor="let s of invoice.services">-->
+            <!--<td>-->
+              <!--<div class="title">{{s.descriptionCn}}</div>-->
+            <!--</td>-->
+            <!--<td class="text-right">-->
+              <!--{{s.costAmount | currency:'USD':'symbol'}}-->
+            <!--</td>-->
+          <!--</tr>-->
+          <!--</tbody>-->
+        <!--</table>-->
+
+        <!--<table class="right-side invoice-table-footer">-->
+          <!--<tbody *ngIf="order">-->
+          <!--<tr class="subtotal">-->
+            <!--<td>SUBTOTAL</td>-->
+            <!--<td>{{order.amountCost | currency:'USD':'symbol'}}</td>-->
+          <!--</tr>-->
+          <!--<tr class="discount">-->
+            <!--<td>DISCOUNT</td>-->
+            <!--<td>{{order.percentage}} %</td>-->
+          <!--</tr>-->
+          <!--<tr class="total">-->
+            <!--<td>TOTAL</td>-->
+            <!--<td>{{price_paid | currency:'USD':'symbol'}}</td>-->
+          <!--</tr>-->
+          <!--</tbody>-->
+        <!--</table>-->
+      <!--</div>-->
+
+      <!--<div class="footer">-->
+        <!--<div class="note">Terms</div>-->
+        <!--<div>-->
+          <!--<div class="small-note">-->
+            <!--<p>OCBC Bank Limited（Oversea-Chinese Banking Corporation Singapore）</p>-->
+            <!--<p>Bank Address: 65 Chulia Street, OCBC Centre Singapore 059513</p>-->
+            <!--<p>Account Name: Satori BCC Pte Ltd.</p>-->
+            <!--<p>Account Number: 503427338301 (USD account)</p>-->
+            <!--<br>-->
+            <!--<p>Swift Code: OCBCSGSG</p>-->
+            <!--<p>Bank Code: 7339</p>-->
+            <!--<br>-->
+            <!--<p>6214830117876085 招商银行</p>-->
+            <!--<p>开户行:北京分行望京西园支行 朱元飞</p>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+  <!--</div>-->
+
+<!--</div>-->
+
+

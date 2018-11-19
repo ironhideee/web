@@ -1,0 +1,32 @@
+<div class="columns">
+  <div class="column is-one-third is-offset-one-third">
+    <mat-card class="login-card">
+      <div class="logo">
+        <img src="/assets/logo_main.png">
+      </div>
+      <!--<h1>登入</h1>-->
+      <mat-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+          <div class="field">
+            <mat-form-field>
+              <input matInput placeholder="Email" formControlName="email">
+              <mat-error *ngIf="email.invalid">Email格式有误</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="field">
+            <mat-form-field>
+              <input type="password" matInput placeholder="密码" formControlName="password">
+              <mat-error *ngIf="password.errors?.minlength">密码长度应大于6位</mat-error>
+            </mat-form-field>
+          </div>
+          <button class="login button" type="submit" [disabled]="loginForm.invalid" mat-raised-button>登入</button>
+          <div>
+            <span class="before-register">还没有账号？</span>
+            <a class="register" mat-button routerLink="/signup">立即注册</a>
+          </div>
+          <mat-error *ngIf="errors" class="form-errors">{{errors}}</mat-error>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<p class="title">基本注册信息</p>
+
+<p *ngIf="loading">载入信息中...</p>
+
+<p *ngIf="errors">{{errors}}</p>
+
+<form [formGroup]="basicInfoForm" (submit)="onSubmit()" *ngIf="!loading && !errors">
+  <mat-card>
+    <div class="example-container">
+      <div class="field">
+        <mat-form-field>
+          <input [readonly]="isPaid()" matInput placeholder="基金会名称(必须使用英文大写)" formControlName="name" (blur)="onCheckName($event.target.value)" required>
+          <span matSuffix>Foundation Ltd.</span>
+        </mat-form-field>
+        <div class="warning" *ngIf="ifNameRepeat">
+          您输入的基金会名称已被占用
+        </div>
+      </div>
+
+      <div class="field">
+        <mat-form-field class="demo-chip-list">
+          <mat-chip-list #chipList>
+            <mat-chip  *ngFor="let activity of selectedBusinessActivities" (removed)="!isPaid() && removeBusinessActivity(activity)">
+              {{activity}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input [readonly]="isPaid()" [matChipInputAddOnBlur]="true" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addBusinessActivity($event)"
+              placeholder="经营范围（注：推荐填写information technology/software development）" formControlName="businessActivities" [matChipInputFor]="chipList" />
+          </mat-chip-list>
+        </mat-form-field>
+      </div>
+
+      <div class="field">
+        <mat-form-field>
+          <input [readonly]="isPaid()" matInput placeholder="财务年度结束日(日/月)  (注：推荐填写当前月份月初日期)" formControlName="financialYearEnd" required>
+          <mat-error *ngIf="financialYearEnd.errors?.pattern">格式错误，应为(DD/MM)</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="field">
+        <mat-checkbox [disabled]="isPaid()" formControlName="localDirector">是否选择本地董事挂名服务
+          <!--<span matTooltip="新加坡政府要求本地注册实体必须有一名董事为新加坡公民或PR">-->
+            <!--<mat-icon class="md-18">info</mat-icon>-->
+          <!--</span>-->
+          <span class="comment">
+            （注：新加坡政府要求本地注册实体必须有一名董事为新加坡公民或PR）
+          </span>
+        </mat-checkbox>
+      </div>
+    </div>
+  </mat-card>
+
+  <p class="title">
+    基金会董事信息
+  </p>
+  <p class="comment">
+    提示：
+  </p>
+  <p class="comment">
+    1、基金会要求至少设置2名实际执行董事（若您未选择本地董事挂名服务，需上传一名本地董事信息）；
+  </p>
+  <p class="comment">
+    2、若您想重新上传文件,点击按钮重新上传即可覆盖之前的文件。
+  </p>
+  <div class="directors">
+    <div formArrayName="directors" class="director" *ngFor="let director of directors; let i = index;">
+      <app-director-documents-form
+        (remove)="removeNaturalPerson($event)"
+        [director]="director"
+        [isPaid]="isPaid()">
+      </app-director-documents-form>
+    </div>
+  </div>
+  <a mat-raised-button class="button" [disabled]="isPaid()" (click)="!isPaid() && openAddDirectorDialog()">新增</a>
+  <button mat-raised-button class="button" type="submit" [disabled]="basicInfoForm.invalid || !isDirectorSet()">下一步</button>
+</form>
+
+<div class="loading-spinner" *ngIf="generating">
+  正在加载中...
+</div>
+

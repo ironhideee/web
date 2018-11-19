@@ -1,0 +1,64 @@
+<div class="columns">
+  <div class="column is-one-third is-offset-one-third" fxLayoutAlign="center center">
+    <mat-card class="signup-card">
+      <!--<mat-card-header>-->
+        <!--<mat-card-title>注册</mat-card-title>-->
+      <!--</mat-card-header>-->
+      <div class="logo">
+        <img src="/assets/logo_main.png">
+      </div>
+      <!--<h1>注册</h1>-->
+      <mat-card-content>
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" novalidate>
+
+          <div class="field">
+            <mat-form-field>
+              <input matInput placeholder="Email" formControlName="email">
+              <mat-error *ngIf="email.invalid">Email格式有误</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div formGroupName="passwords">
+            <div class="field">
+              <mat-form-field>
+                <input type="password" matInput placeholder="密码" formControlName="password">
+                <mat-error *ngIf="password.errors?.minlength">密码长度应大于6位</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="field">
+              <mat-form-field>
+                <input type="password" matInput placeholder="重复密码" formControlName="repeat">
+                <mat-error *ngIf="passwords.errors?.areEqual">密码不匹配</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="field">
+            <mat-form-field>
+              <input matInput placeholder="注册码" formControlName="invitation_code">
+              <mat-error *ngIf="invitation_code.invalid">
+                <p class="errorInfo">您输入的注册码无效，请联系客户经理获取有效的注册码后进行操作！</p>
+                <img class="image" src="assets/wechat.jpeg">
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="terms" fxLayout="row" fxLayoutAlign="center center">
+            <mat-checkbox name="terms" aria-label="I read and accept" (click)="checkAgreement()" required>
+              <span>我同意</span>
+              <a href="assets/Satori User Agreement.pdf" class="hint" target="_blank">用户协议</a>
+            </mat-checkbox>
+          </div>
+
+          <button class="buttons button" type="submit" [disabled]="signupForm.invalid || !agreement" mat-raised-button>注册</button>
+          <div>
+            <span class="before-login">已经拥有账号</span>
+            <a mat-button class="hint" routerLink="/login">登入</a>
+          </div>
+          <mat-error *ngIf="errors" class="form-errors">{{errors}}</mat-error>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

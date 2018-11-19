@@ -1,0 +1,59 @@
+<div class="columns">
+  <div class="column">
+  	<h1>1.财税审计方案合同：</h1>
+  	<div class="columns">
+  		<mat-card>
+        <p>
+          请从此处下载财税审计方案合同：
+          <a [href]="auditContract_url" target="_blank">财税审计方案合同</a>
+        </p>
+  			<p>（需要您在下载财税审计方案合同后签字并上传给Satori）</p>
+        <div class="file-field">
+          <label class="upload-button">
+            请从此处上传签字后的财税审计方案合同：
+            <input type="file" ngFileSelect (uploadOutput)="onAuditContractUploadOutput($event)" [uploadInput]="uploadInput"
+                   multiple>
+          </label>
+        </div>
+  		</mat-card>
+  	</div>
+  	<hr>
+  	<h1>2.审计指派决议（需所有董事签字）：</h1>
+  	<div class="columns">
+  		<mat-card>
+        <p>
+          请从此处下载审计指派决议：
+          <a [href]="auditConstitution_url" target="_blank">审计指派决议</a>
+        </p>
+  			<p>（需要您在下载审计指派决议后签字并上传给Satori）</p>
+        <div class="file-field">
+          <label class="upload-button">
+            请从此处上传签字后的审计指派决议：
+            <input type="file" ngFileSelect (uploadOutput)="onAuditConstitutionUploadOutput($event)" [uploadInput]="uploadInput"
+                   multiple>
+          </label>
+        </div>
+  		</mat-card>
+  	</div>
+  	<hr>
+  	<h1>3.审计聘任表（一位董事签字即可）：</h1>
+  	<div class="columns">
+  		<mat-card>
+        <p>
+          请从此处下载审计聘任表：
+          <a [href]="auditorAppointedContract_url" target="_blank">审计聘任表</a>
+        </p>
+  			<p>（需要您在下载审计聘任表后签字并上传给Satori）</p>
+        <div class="file-field">
+          <label class="upload-button">
+            请从此处上传签字后的审计聘任表：
+            <input type="file" ngFileSelect (uploadOutput)="onAuditAppointedUploadOutput($event)" [uploadInput]="uploadInput"
+                   multiple>
+          </label>
+        </div>
+  		</mat-card>
+  	</div>
+
+    <a mat-raised-button color="primary" (click)="gotoNextStep()">继续</a>
+  </div>
+</div>

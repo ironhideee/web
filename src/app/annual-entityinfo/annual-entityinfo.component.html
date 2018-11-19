@@ -1,0 +1,43 @@
+<mat-card>
+  <p>
+    尊敬的用户，在进行年度续费业务之前，您需要提交以下信息：
+  </p>
+
+  <div class="file-field">
+    <mat-form-field>
+      <mat-select placeholder="公司实体名称" (selectionChange)="onNameOfEntityChanged($event)">
+        <mat-option *ngFor="let type of nameOfEntity" [value]="type">
+          {{type}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+  <button *ngIf="!ifshow" mat-button color="primary" routerLink="/dashboard">取消</button>
+  <button *ngIf="!ifshow" mat-raised-button class="button" (click)="onSubmit()">提交</button>
+
+  <form [formGroup]="basicInfoForm" *ngIf="ifshow" (submit)="onConfirm()">
+    <div class="example-container">
+      <div class="field">
+        <mat-form-field>
+          <input matInput placeholder="实体名称(请使用大写英文)" formControlName="name" type="text">
+        </mat-form-field>
+      </div>
+
+      <div class="file-field">
+        <mat-form-field>
+          <mat-select placeholder="实体类型" (selectionChange)="onTypeOfEntityChanged($event)">
+            <mat-option *ngFor="let type of typeOfEntity" [value]="type.value">
+              {{type.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <button mat-button color="primary" routerLink="/dashboard">取消</button>
+
+    <button mat-raised-button class="button" type="submit">确定</button>
+  </form>
+</mat-card>

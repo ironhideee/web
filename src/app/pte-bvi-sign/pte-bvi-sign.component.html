@@ -1,0 +1,28 @@
+<p class="title">签署文件</p>
+<mat-card>
+  <p>请您签署文件，并将签署后的合同上传</p>
+  <p class="comment">（注：请将签署后的清晰版扫描件上传）</p>
+</mat-card>
+
+<mat-card>
+  <p>
+    请从此处点击下载需要签署的合同:
+    <a [href]="engagement_letter_url" target="_blank"><button mat-button color="primary">合同</button></a>
+  </p>
+
+  <div class="file-field">
+    <label class="upload-button">
+      <span><mat-icon *ngIf="engageLetterchecked">done</mat-icon>请从此处上传签署后的合同：</span>
+      <input type="file" ngFileSelect (uploadOutput)="onEngageLetterUploadOutput($event)" [uploadInput]="uploadInput"
+             multiple>
+      <!--<span class="comment">（注：请上传pdf格式的文件）</span>-->
+    </label>
+    <div class="loading-spinner" *ngIf="engageletteruploading">
+      文件正在上传中...
+    </div>
+  </div>
+</mat-card>
+<button mat-raised-button class="button" [disabled]="!engageLetterchecked" (click)="gotoNextStep()">继续</button>
+
+{{errors}}
+
