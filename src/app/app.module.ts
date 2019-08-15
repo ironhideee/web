@@ -6,8 +6,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -23,15 +21,12 @@ import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CartComponent } from './cart/cart.component';
-import { CheckoutComponent } from './checkout/checkout.component';
-import { CorpComponent } from './corp/corp.component';
 import { InputFileComponent } from './input-file/input-file.component';
 import { ByteFormatPipe } from './byte-format.pipe';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { OrderService } from './order.service';
-import { SettingsComponent } from './settings/settings.component';
 import { OrdersComponent } from './orders/orders.component';
 import { IncorpComponent } from './incorp/incorp.component';
 import { IncorpClgComponent } from './incorp-clg/incorp-clg.component';
@@ -103,13 +98,10 @@ export function getToken() {
     DashboardComponent,
     NavbarComponent,
     CartComponent,
-    CheckoutComponent,
-    CorpComponent,
     InputFileComponent,
     ByteFormatPipe,
     LoginComponent,
     SignupComponent,
-    SettingsComponent,
     OrdersComponent,
     IncorpComponent,
     IncorpClgComponent,

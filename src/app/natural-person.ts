@@ -1,5 +1,4 @@
 import { autoserialize, autoserializeAs } from 'cerialize';
-import { isDeepStrictEqual } from 'util';
 
 export class NaturalPerson {
 

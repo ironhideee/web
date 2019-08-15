@@ -1,13 +1,10 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { IncorpStep } from './incorp-step';
 import { Router } from '@angular/router';
-import { OrderService } from './order.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Deserialize } from 'cerialize';
-
 import 'rxjs/add/operator/do';
-import { environment } from '../environments/environment';
 import { BaseService } from './base.service';
 
 /**

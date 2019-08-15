@@ -1,21 +1,13 @@
-import { Component, OnInit, Inject,
-  AfterViewInit,
-  OnDestroy,
-  ViewChild,
-  ElementRef,
-  ChangeDetectorRef} from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import { OrderService } from '../order.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Invoice } from '../invoice';
 import { Order } from '../order';
 import { IncorpStepperService } from '../incorp-stepper.service';
 import { IncorpGeneratedDocument } from '../incorp-generated-document';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { PaymentComponent } from '../payment/payment.component';
+import { MatDialog } from '@angular/material';
 import { environment } from '../../environments/environment';
 import * as CryptoJS from 'crypto-js';
-import {Discount} from '../discount';
 import * as jsPDF from 'jspdf';
 
 @Component({

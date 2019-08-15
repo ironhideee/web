@@ -1,12 +1,9 @@
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
-import { CorpComponent } from './corp/corp.component';
 import { CartComponent } from './cart/cart.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CheckoutComponent } from './checkout/checkout.component';
-import { SettingsComponent } from './settings/settings.component';
 import { OrdersComponent } from './orders/orders.component';
 import { IncorpComponent } from './incorp/incorp.component';
 import { IncorpClgComponent } from './incorp-clg/incorp-clg.component';
@@ -54,12 +51,9 @@ import {PteBviSuccessComponent} from './pte-bvi-success/pte-bvi-success.componen
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'checkout', component: CheckoutComponent },
-  { path: 'corps/:id/dashboard', component: CorpComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'settings', component: SettingsComponent },
   { path: 'orders', component: OrdersComponent },
   { path: 'entityinfo', component: EntityinfoSubmitComponent },
   { path: 'annual-entityinfo', component: AnnualEntityinfoComponent },

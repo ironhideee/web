@@ -1,4 +1,4 @@
-import { autoserializeAs, autoserialize } from 'cerialize';
+import { autoserializeAs } from 'cerialize';
 
 export class LineItem {
 

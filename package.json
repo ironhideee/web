@@ -41,6 +41,7 @@
     "jspdf": "^1.4.1",
     "ngx-uploader": "^4.2.4",
     "ngxuploader": "^1.0.3",
+    "node-sass": "^4.12.0",
     "randomhex": "^0.1.5",
     "rxjs": "^5.5.6",
     "style-loader": "^0.20.1",

@@ -1,9 +1,7 @@
 import { Order } from './order';
-import { FormGroup } from '@angular/forms';
-import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Injectable} from '@angular/core';
-import { of } from 'rxjs/observable/of';
 import { Serialize, Deserialize } from 'cerialize';
 import { NaturalPerson } from './natural-person';
 import { IncorpGeneratedDocument } from './incorp-generated-document';
@@ -13,8 +11,6 @@ import { environment } from '../environments/environment';
 import { BaseService } from './base.service';
 import * as CryptoJS from "crypto-js";
 import { Entity } from './entity';
-import { Discount } from './discount';
-import { FomoValues } from './fomo-values';
 
 @Injectable()
 export class OrderService extends BaseService {

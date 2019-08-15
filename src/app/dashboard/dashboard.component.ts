@@ -1,10 +1,8 @@
-import { Subject } from 'rxjs/Subject';
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../order.service';
 import { Order } from '../order';
 import { Entity } from '../entity';
 import { Router } from '@angular/router';
-import {IncorpStepperService} from '../incorp-stepper.service';
 
 
 @Component({
@@ -32,7 +30,6 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private stepService: IncorpStepperService,
     private orderService: OrderService
     ) { }
 

@@ -1,5 +1,5 @@
 import { FileInput } from './file-input.model';
-import { FormControl, ValidatorFn, AbstractControl } from '@angular/forms';
+import { ValidatorFn, AbstractControl } from '@angular/forms';
 
 export class FileValidators {
 
