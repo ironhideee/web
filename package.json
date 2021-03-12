@@ -38,7 +38,7 @@
     "crypto-js": "^3.1.9-1",
     "css-loader": "^0.28.9",
     "global": "^4.3.2",
-    "jspdf": "^1.4.1",
+    "jspdf": "^2.3.1",
     "ngx-uploader": "^4.2.4",
     "ngxuploader": "^1.0.3",
     "node-sass": "^4.12.0",
